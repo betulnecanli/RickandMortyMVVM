@@ -3,14 +3,19 @@ package com.betulnecanli.rickandmortymvvm.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.betulnecanli.rickandmortymvvm.data.models.Details
+import com.betulnecanli.rickandmortymvvm.data.models.ListResponse
 import com.betulnecanli.rickandmortymvvm.databinding.ListItemBinding
 
-class RickandMortyPagingAdapter: PagingDataAdapter<Details, RickandMortyPagingAdapter.MyViewHolder>(diffCallback = diffCallBack ) {
+class RickandMortyPagingAdapter(
+            private val listener : OnItemClickListener
+): PagingDataAdapter<Details,
+        RickandMortyPagingAdapter.MyViewHolder>(diffCallback = diffCallBack ) {
 
 
     companion object{
@@ -24,24 +29,41 @@ class RickandMortyPagingAdapter: PagingDataAdapter<Details, RickandMortyPagingAd
             }
 
         }
+
+
     }
 
-    inner class MyViewHolder(val binding : ListItemBinding): RecyclerView.ViewHolder(binding.root)
+    inner class MyViewHolder(val binding : ListItemBinding): RecyclerView.ViewHolder(binding.root){
+        init{
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = getItem(position)
-
-        holder.binding.apply {
-
-            holder.itemView.apply {
-                characterName.text = currentItem?.name.toString()
-                val imgLink  = currentItem?.image
+            binding.apply {
+                root.setOnClickListener {
+                    val position = adapterPosition
+                    if(position != RecyclerView.NO_POSITION){
+                        val detail = getItem(position)
+                        if (detail != null) {
+                            listener.onItemClickListener(detail)
+                        }
+                    }
+                }
+            }
+        }
+        fun bind(details: Details){
+            binding.apply {
+                characterName.text = details.name
+                val imgLink  = details.image
                 characterImg.load(imgLink){
                     crossfade(true)
                     crossfade(1000)
                 }
             }
+        }
+    }
 
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentItem = getItem(position)
+        if (currentItem != null) {
+            holder.bind(currentItem)
         }
     }
 
@@ -53,5 +75,10 @@ class RickandMortyPagingAdapter: PagingDataAdapter<Details, RickandMortyPagingAd
                 false
             )
         )
+    }
+
+
+    interface OnItemClickListener{
+    fun onItemClickListener(details: Details)
     }
 }

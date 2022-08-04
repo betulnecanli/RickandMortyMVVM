@@ -11,13 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.betulnecanli.rickandmortymvvm.R
 import com.betulnecanli.rickandmortymvvm.adapter.RickandMortyPagingAdapter
+import com.betulnecanli.rickandmortymvvm.data.models.Details
 import com.betulnecanli.rickandmortymvvm.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ListFragment : Fragment(R.layout.fragment_list) {
+class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter.OnItemClickListener {
 
 
     private lateinit var binding : FragmentListBinding
@@ -34,21 +35,24 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = FragmentListBinding.inflate(layoutInflater)
+        binding = FragmentListBinding.bind(view)
+
         setupRecyclerView()
         loadingData()
     }
 
 
     fun setupRecyclerView(){
-        mAdapter = RickandMortyPagingAdapter()
+        mAdapter = RickandMortyPagingAdapter(this)
         binding.recyclerView.apply {
+            adapter = mAdapter
             layoutManager  = StaggeredGridLayoutManager(
                 2, StaggeredGridLayoutManager.VERTICAL
             )
-
-            adapter = mAdapter
             setHasFixedSize(true)
+
+
+
         }
 
     }
@@ -62,6 +66,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
             }
         }
+    }
+
+    override fun onItemClickListener(details: Details) {
+        viewModel.openCharacterDetails(details)
     }
 
 
