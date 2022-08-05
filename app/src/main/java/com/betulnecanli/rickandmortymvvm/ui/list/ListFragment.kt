@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.betulnecanli.rickandmortymvvm.R
 import com.betulnecanli.rickandmortymvvm.adapter.RickandMortyPagingAdapter
@@ -39,6 +40,23 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
         setupRecyclerView()
         loadingData()
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.taskEvent.collect { event ->
+                when(event){
+                    is ListViewModel.TaskEvent.NavigateToDetailScreen ->
+                    {
+                    val action = ListFragmentDirections.actionListFragmentToDetailFragment(event.details)
+                        findNavController().navigate(action)
+                    }
+                    else -> {}
+                }
+
+
+            }
+        }
+
+
     }
 
 

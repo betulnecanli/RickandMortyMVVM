@@ -9,7 +9,11 @@
         android:id="@+id/detailFragment"
         android:name="com.betulnecanli.rickandmortymvvm.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="details"
+            app:argType="com.betulnecanli.rickandmortymvvm.data.models.Details" />
+    </fragment>
     <fragment
         android:id="@+id/listFragment"
         android:name="com.betulnecanli.rickandmortymvvm.ui.list.ListFragment"

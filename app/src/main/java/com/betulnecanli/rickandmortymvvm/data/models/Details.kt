@@ -1,8 +1,11 @@
 package com.betulnecanli.rickandmortymvvm.data.models
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Details(
     @SerializedName("created")
     val created: String,
@@ -24,4 +27,4 @@ data class Details(
     val type: String,
     @SerializedName("url")
     val url: String
-)
+): Parcelable
