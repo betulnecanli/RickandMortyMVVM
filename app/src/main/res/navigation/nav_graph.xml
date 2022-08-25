@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.betulnecanli.rickandmortymvvm.ui.detail.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        android:label="Details"
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="details"
             app:argType="com.betulnecanli.rickandmortymvvm.data.models.Details" />
@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.betulnecanli.rickandmortymvvm.ui.list.ListFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        android:label="Characters"
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_detailFragment"
             app:destination="@id/detailFragment" />

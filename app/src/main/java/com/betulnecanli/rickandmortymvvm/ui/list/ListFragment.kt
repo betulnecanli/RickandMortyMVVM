@@ -40,6 +40,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
         setupRecyclerView()
         loadingData()
+        searchPart()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.taskEvent.collect { event ->
@@ -84,6 +85,10 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
             }
         }
+    }
+
+    fun searchPart(){
+       // binding.charSearchView.onQueryTe
     }
 
     override fun onItemClickListener(details: Details) {
