@@ -12,4 +12,13 @@ interface ApiService {
     suspend fun getAllCharacters(
         @Query("page") page : Int
     ) : Response<ListResponse>
+
+
+    @GET(Constants.END_POINT)
+    suspend fun searchCharacters(
+        @Query("name")
+        searchQuery : String,
+        @Query("page")
+        page : Int
+    ) : Response<ListResponse>
 }

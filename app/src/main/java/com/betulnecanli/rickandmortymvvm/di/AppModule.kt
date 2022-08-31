@@ -1,6 +1,7 @@
 package com.betulnecanli.rickandmortymvvm.di
 
 import com.betulnecanli.rickandmortymvvm.data.remote.ApiService
+import com.betulnecanli.rickandmortymvvm.repository.RickandMortyRepository
 import com.betulnecanli.rickandmortymvvm.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -28,4 +29,6 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+
+
 }

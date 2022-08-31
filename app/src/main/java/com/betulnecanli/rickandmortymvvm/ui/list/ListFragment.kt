@@ -1,11 +1,11 @@
 package com.betulnecanli.rickandmortymvvm.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,9 +15,6 @@ import com.betulnecanli.rickandmortymvvm.adapter.RickandMortyPagingAdapter
 import com.betulnecanli.rickandmortymvvm.data.models.Details
 import com.betulnecanli.rickandmortymvvm.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter.OnItemClickListener {
 
@@ -38,10 +35,6 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentListBinding.bind(view)
 
-        setupRecyclerView()
-        loadingData()
-        searchPart()
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.taskEvent.collect { event ->
                 when(event){
@@ -56,12 +49,6 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
             }
         }
-
-
-    }
-
-
-    fun setupRecyclerView(){
         mAdapter = RickandMortyPagingAdapter(this)
         binding.recyclerView.apply {
             adapter = mAdapter
@@ -74,22 +61,42 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
         }
 
-    }
+       viewModel.characters.observe(viewLifecycleOwner){
+           mAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+       }
 
-    fun loadingData(){
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted{
-            viewModel.listData.collect{pagingData ->
-
-                Log.d("aaa", "load: $pagingData")
-                mAdapter.submitData(pagingData)
-
+        binding.charSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null){
+                    binding.recyclerView.scrollToPosition(0)
+                    viewModel.searchCharacter(query)
+                    binding.charSearchView.clearFocus()
+                }
+                return true
             }
-        }
+
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText != null){
+                    binding.recyclerView.scrollToPosition(0)
+                    viewModel.searchCharacter(newText)
+
+                }
+                return true
+            }
+
+        })
+
+
     }
 
-    fun searchPart(){
-       // binding.charSearchView.onQueryTe
-    }
+
+
+
+
+
+
 
     override fun onItemClickListener(details: Details) {
         viewModel.openCharacterDetails(details)
@@ -97,3 +104,4 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
 
 }
+
