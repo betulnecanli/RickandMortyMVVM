@@ -12,7 +12,10 @@ import com.betulnecanli.rickandmortymvvm.repository.RickandMortyRepository
 import com.betulnecanli.rickandmortymvvm.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.switchMap
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -27,13 +30,29 @@ class ListViewModel @Inject constructor(
     val taskEvent = taskEventChannel.receiveAsFlow()
 
     private val currentQuery =MutableLiveData("")
-    val characters = currentQuery.switchMap { queryString ->
+    private val statusSelected= MutableLiveData("")
+
+
+    private val charactersFlow = combine(currentQuery.asFlow(), statusSelected.asFlow()){
+        query_, status_ ->
+        Pair(query_, status_)
+    }.flatMapLatest {(query_, status_) ->
+        repository.getSearchResults(query_,status_).asFlow()
+    }
+
+    val characters = charactersFlow.asLiveData()
+
+    /*val characters = currentQuery.switchMap { queryString ->
         repository.getSearchResults(queryString).cachedIn(viewModelScope)
 
-    }
+    }*/
 
     fun searchCharacter(query: String){
         currentQuery.value = query
+    }
+
+    fun statusChoose(status : String){
+        statusSelected.value= status
     }
 
 
@@ -45,14 +64,7 @@ class ListViewModel @Inject constructor(
 
 
 
-    private fun handleSearchCharacter(response : Response<ListResponse>) : Resource<ListResponse>{
-        if(response.isSuccessful){
-            response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
-            }
-        }
-        return Resource.Error(response.message())
-    }
+
 
 
 

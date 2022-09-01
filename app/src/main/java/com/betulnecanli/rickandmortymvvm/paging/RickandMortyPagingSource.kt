@@ -10,7 +10,8 @@ private const val STARTING_PAGE_INDEX = 1
 
 class RickandMortyPagingSource(
     private val apiService: ApiService,
-    private val query : String
+    private val query : String,
+    private val status : String
     ) : PagingSource<Int, Details>() {
     override fun getRefreshKey(state: PagingState<Int, Details>): Int? {
         return null
@@ -19,17 +20,39 @@ class RickandMortyPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Details> {
 
         return try {
-            val currentPage = params.key ?: STARTING_PAGE_INDEX
-            val response = apiService.searchCharacters(query, currentPage)
             val responseData = mutableListOf<Details>()
+            val currentPage = params.key ?: STARTING_PAGE_INDEX
+            val response = apiService.searchCharacters(query, currentPage, status)
             val data = response.body()?.details ?: emptyList()
             responseData.addAll(data)
-
             LoadResult.Page(
                 data = responseData,
                 prevKey = if (currentPage == 1) null else -1,
                 nextKey = if(data.isEmpty()) null else currentPage.plus(1)
             )
+            /*if(status != ""){
+                val response = apiService.filterByStatus(status, currentPage)
+                val data = response.body()?.details ?: emptyList()
+                responseData.addAll(data)
+                LoadResult.Page(
+                    data = responseData,
+                    prevKey = if (currentPage == 1) null else -1,
+                    nextKey = if(data.isEmpty()) null else currentPage.plus(1)
+                )
+            }
+            else{
+                val response = apiService.searchCharacters(query, currentPage)
+                val data = response.body()?.details ?: emptyList()
+                responseData.addAll(data)
+                LoadResult.Page(
+                    data = responseData,
+                    prevKey = if (currentPage == 1) null else -1,
+                    nextKey = if(data.isEmpty()) null else currentPage.plus(1)
+                )
+            }*/
+
+
+
         } catch (e: Exception) {
             LoadResult.Error(e)
         }

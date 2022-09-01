@@ -11,13 +11,15 @@ class RickandMortyRepository @Inject constructor(
     val apiService: ApiService
 ) {
 
-    fun getSearchResults(query : String) =
+    fun getSearchResults(query : String, status : String) =
         Pager(
             config = PagingConfig(
                 pageSize = 20,
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = {RickandMortyPagingSource(apiService, query)}
+            pagingSourceFactory = {RickandMortyPagingSource(apiService, query, status)}
         ).liveData
+
+
 }
