@@ -65,6 +65,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
         }
         mAdapter = RickandMortyPagingAdapter(this)
         binding.recyclerView.apply {
+
             adapter = mAdapter
             layoutManager  = StaggeredGridLayoutManager(
                 2, StaggeredGridLayoutManager.VERTICAL

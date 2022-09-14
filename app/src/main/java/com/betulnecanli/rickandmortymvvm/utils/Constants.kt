@@ -6,4 +6,5 @@ object Constants {
    const val END_POINT : String = "character"
 
 
+
 }

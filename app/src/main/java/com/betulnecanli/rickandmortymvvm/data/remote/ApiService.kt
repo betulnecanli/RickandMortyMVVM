@@ -24,11 +24,5 @@ interface ApiService {
         status : String
     ) : Response<ListResponse>
 
-    @GET(Constants.END_POINT)
-    suspend fun filterByStatus(
-        @Query("status")
-        status : String,
-        @Query("page")
-        page : Int
-    ) : Response<ListResponse>
+
 }
