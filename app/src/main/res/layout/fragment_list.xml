@@ -7,22 +7,18 @@
     android:background="@color/black"
     android:fitsSystemWindows="true"
     tools:context=".ui.list.ListFragment">
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@color/black">
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:background="@drawable/ricknmorty"
              />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -30,9 +26,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             />
-
     </RelativeLayout>
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
@@ -40,7 +34,6 @@
         android:background="@android:color/transparent"
         app:elevation="0dp"
         >
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,42 +42,37 @@
             app:expandedTitleTextAppearance="@style/AppTheme.Title.Expanded"
             app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed"
             >
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="bottom"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/search_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:fontFamily="@font/asapcondensed"
                     android:text="Rick and Morty"
                     android:textColor="@color/white"
                     android:textSize="32sp"
                     android:textStyle="bold" />
-
                 <SearchView
                     android:id="@+id/charSearchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
+                    android:searchIcon="@drawable/ic_baseline_search_24"
                     android:background="@drawable/searchv_bg"
+                   android:iconifiedByDefault="false"
+                    app:queryHint="Search"
+                    android:theme="@style/SearchViewStyle"
                     app:layout_constraintTop_toTopOf="parent" />
-
-
             </LinearLayout>
-
-
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-
-
     </com.google.android.material.appbar.AppBarLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -96,11 +84,6 @@
                 tools:itemCount="20"
                 tools:spanCount="2"
                 />
-
-
-
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -115,16 +98,13 @@
             android:layout_marginHorizontal="15dp"
             android:layout_gravity="end|bottom"
             >
-
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipAlive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-
                 android:text="Alive" />
-
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDead"
                 android:layout_width="wrap_content"
@@ -132,7 +112,6 @@
                 android:visibility="gone"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:text="Dead"/>
-
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipUnknown"
                 android:layout_width="wrap_content"
@@ -141,7 +120,6 @@
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:text="Unknown"
                 />
-
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipClear"
                 android:layout_width="wrap_content"
@@ -150,10 +128,7 @@
                 android:text="Clean"
                 android:visibility="gone"
                 android:checked="true" />
-
-
         </com.google.android.material.chip.ChipGroup>
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
@@ -162,12 +137,5 @@
             android:layout_gravity="end|bottom"
             android:src="@drawable/ic_baseline_filter_list_24"
             />
-
-
     </LinearLayout>
-
-
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

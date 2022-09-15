@@ -36,9 +36,12 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentListBinding.bind(view)
@@ -111,14 +114,15 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
         //Filter Part
         binding.statusChipsG.setOnCheckedStateChangeListener { group, checkedIds ->
 
+            binding.recyclerView.scrollToPosition(0)
            //group.getChildAt(group.checkedChipId).
             if(group.getTextChipChecked() != "Clean"){
                 viewModel.statusChoose(group.getTextChipChecked())
                 binding.recyclerView.scrollToPosition(0)
             }
              else if(group.getTextChipChecked() == "Clean"){
-                binding.recyclerView.scrollToPosition(0)
                  viewModel.statusChoose("")
+                 binding.recyclerView.scrollToPosition(0)
 
             }
             else{

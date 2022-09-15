@@ -25,6 +25,7 @@
         android:text="CHARACTER NAME"
         android:textSize="12dp"
         android:lines="1"
+        android:fontFamily="@font/asapcondensed"
         android:gravity="center"
         android:layout_gravity="center"
         android:textStyle="bold"
