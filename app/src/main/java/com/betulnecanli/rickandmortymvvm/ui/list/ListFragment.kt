@@ -32,11 +32,12 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
     private val toBottom : Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim) }
     private var filterButtonClicked : Boolean = false
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        filterButtonClicked = false
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
@@ -45,7 +46,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentListBinding.bind(view)
-        filterButtonClicked = false
+
 
         binding.floatingActionButton.setOnClickListener {
             filterButtonClicked()
