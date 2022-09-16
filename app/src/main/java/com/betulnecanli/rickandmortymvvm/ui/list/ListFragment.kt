@@ -45,6 +45,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentListBinding.bind(view)
+        filterButtonClicked = false
 
         binding.floatingActionButton.setOnClickListener {
             filterButtonClicked()
@@ -91,6 +92,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
                     binding.recyclerView.scrollToPosition(0)
                     viewModel.searchCharacter(query)
                     binding.charSearchView.clearFocus()
+                    filterButtonClicked = false
                 }
                 return true
             }
@@ -100,6 +102,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
                 if(newText != null){
                     binding.recyclerView.scrollToPosition(0)
                     viewModel.searchCharacter(newText)
+                    filterButtonClicked = false
 
                 }
                 return true
@@ -121,6 +124,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
                 //this line of code makes the list scrolls
                 // to top after click to chip
                 binding.recyclerView.scrollToPosition(0)
+
             }
              //If we choose "reset", we reser the status filter
             // and see all the data
@@ -132,6 +136,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
             else{
                 binding.recyclerView.scrollToPosition(0)
             }
+
 
             //with that line float button going to close after we click to the any chip
             filterButtonClicked()
