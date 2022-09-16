@@ -30,26 +30,6 @@ class RickandMortyPagingSource(
                 prevKey = if (currentPage == 1) null else -1,
                 nextKey = if(data.isEmpty()) null else currentPage.plus(1)
             )
-            /*if(status != ""){
-                val response = apiService.filterByStatus(status, currentPage)
-                val data = response.body()?.details ?: emptyList()
-                responseData.addAll(data)
-                LoadResult.Page(
-                    data = responseData,
-                    prevKey = if (currentPage == 1) null else -1,
-                    nextKey = if(data.isEmpty()) null else currentPage.plus(1)
-                )
-            }
-            else{
-                val response = apiService.searchCharacters(query, currentPage)
-                val data = response.body()?.details ?: emptyList()
-                responseData.addAll(data)
-                LoadResult.Page(
-                    data = responseData,
-                    prevKey = if (currentPage == 1) null else -1,
-                    nextKey = if(data.isEmpty()) null else currentPage.plus(1)
-                )
-            }*/
 
 
 

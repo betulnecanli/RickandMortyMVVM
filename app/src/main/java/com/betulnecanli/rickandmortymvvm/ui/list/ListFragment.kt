@@ -113,14 +113,18 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
         //Filter Part
         binding.statusChipsG.setOnCheckedStateChangeListener { group, checkedIds ->
-
-            binding.recyclerView.scrollToPosition(0)
-           //group.getChildAt(group.checkedChipId).
-            if(group.getTextChipChecked() != "Clean"){
+            //if we choose the chip that's not the "reset" one,
+            //the string we got from the extension code is
+            //going to be sent to viewModel for filtering
+            if(group.getTextChipChecked() != "Reset"){
                 viewModel.statusChoose(group.getTextChipChecked())
+                //this line of code makes the list scrolls
+                // to top after click to chip
                 binding.recyclerView.scrollToPosition(0)
             }
-             else if(group.getTextChipChecked() == "Clean"){
+             //If we choose "reset", we reser the status filter
+            // and see all the data
+             else if(group.getTextChipChecked() == "Reset"){
                  viewModel.statusChoose("")
                  binding.recyclerView.scrollToPosition(0)
 
@@ -129,6 +133,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
                 binding.recyclerView.scrollToPosition(0)
             }
 
+            //with that line float button going to close after we click to the any chip
             filterButtonClicked()
 
         }
@@ -136,7 +141,7 @@ class ListFragment : Fragment(R.layout.fragment_list), RickandMortyPagingAdapter
 
 
 
-        //Filter Part
+
     }
 
 

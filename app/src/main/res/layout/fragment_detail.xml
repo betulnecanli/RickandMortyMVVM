@@ -13,6 +13,9 @@
         android:layout_marginTop="40dp"
         android:text="Character Name"
         android:textSize="30dp"
+        android:gravity="center"
+        android:fontFamily="@font/asapcondensed"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="Status: "
+        android:fontFamily="@font/asapcondensed"
         app:layout_constraintStart_toStartOf="@+id/charImg"
         app:layout_constraintTop_toBottomOf="@+id/charImg" />
 
@@ -50,23 +54,34 @@
         app:layout_constraintTop_toBottomOf="@+id/charImg" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/speciesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="EPISODES"
-        android:textSize="25dp"
-        android:textStyle="bold"
+        android:text="Species: "
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/charStatusText" />
 
+    <TextView
+        android:id="@+id/genderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender: "
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speciesTextView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/episodesRyc"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <TextView
+        android:id="@+id/typeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender: "
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genderTextView" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

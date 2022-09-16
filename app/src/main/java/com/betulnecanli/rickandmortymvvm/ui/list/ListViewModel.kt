@@ -42,10 +42,7 @@ class ListViewModel @Inject constructor(
 
     val characters = charactersFlow.asLiveData()
 
-    /*val characters = currentQuery.switchMap { queryString ->
-        repository.getSearchResults(queryString).cachedIn(viewModelScope)
 
-    }*/
 
     fun searchCharacter(query: String){
         currentQuery.value = query

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.RickandMortyMVVM" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">#61C555</item>
         <item name="colorPrimaryVariant">#504E53</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->

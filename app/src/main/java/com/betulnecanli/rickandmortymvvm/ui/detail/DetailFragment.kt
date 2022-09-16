@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private lateinit var binding : FragmentDetailBinding
-    private val viewModel : DetailViewModel by viewModels()
     val args : DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -34,13 +33,20 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
             charName.text = args.details.name
             val imgLink = args.details.image
+
             charImg.load(imgLink){
                 crossfade(true)
                 crossfade(1000)
             }
+            speciesTextView.text = "Species : " +args.details.species
+            genderTextView.text = "Gender : " + args.details.gender
+            if(args.details.type == ""){
+                typeTextView.text = "Type : " + "No Data"
+            }
+            else typeTextView.text = "Type : " + args.details.type
             if (args.details.status == ("Alive")) charStatus.setBackgroundResource(R.drawable.ic_alive)
             else charStatus.setBackgroundResource(R.drawable.ic_dead)
-            // charStatus.
+
 
 
         }
