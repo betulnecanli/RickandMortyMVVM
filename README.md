@@ -20,7 +20,9 @@
 
 
 #  <h1 align="center">📚 Libraries and Tools Used </h1>
+
 <p align="center">
+
 - Retrofit
 - Paging3
 - ViewBinding
@@ -28,6 +30,7 @@
 - Coil
 - Dagger Hilt
 - Coroutines
+
 </p>
 
 
