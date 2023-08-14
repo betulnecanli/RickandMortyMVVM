@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Character Name"
-        android:textSize="30dp"
-        android:gravity="center"
         android:fontFamily="@font/asapcondensed"
+        android:gravity="center"
+        android:text="Character Name"
         android:textAlignment="center"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,12 +25,11 @@
         android:id="@+id/charImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
         android:layout_marginTop="25dp"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/charName" />
-
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -38,8 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="Status: "
         android:fontFamily="@font/asapcondensed"
+        android:text="Status: "
         app:layout_constraintStart_toStartOf="@+id/charImg"
         app:layout_constraintTop_toBottomOf="@+id/charImg" />
 
@@ -48,8 +47,8 @@
         android:id="@+id/charStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="23dp"
         app:layout_constraintStart_toEndOf="@+id/charStatusText"
         app:layout_constraintTop_toBottomOf="@+id/charImg" />
 
@@ -57,8 +56,8 @@
         android:id="@+id/speciesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Species: "
         android:layout_marginTop="20dp"
+        android:text="Species: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/charStatusText" />
@@ -67,8 +66,8 @@
         android:id="@+id/genderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gender: "
         android:layout_marginTop="20dp"
+        android:text="Gender: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/speciesTextView" />
@@ -77,8 +76,8 @@
         android:id="@+id/typeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gender: "
         android:layout_marginTop="20dp"
+        android:text="Gender: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genderTextView" />

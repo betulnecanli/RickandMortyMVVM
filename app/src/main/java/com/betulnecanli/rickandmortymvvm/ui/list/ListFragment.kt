@@ -1,6 +1,7 @@
 package com.betulnecanli.rickandmortymvvm.ui.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.betulnecanli.rickandmortymvvm.R
 import com.betulnecanli.rickandmortymvvm.adapter.RickandMortyPagingAdapter
 import com.betulnecanli.rickandmortymvvm.data.models.Details
 import com.betulnecanli.rickandmortymvvm.databinding.FragmentListBinding
 import com.betulnecanli.rickandmortymvvm.utils.getTextChipChecked
+import com.betulnecanli.rickandmortymvvm.utils.showProgress
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list),
@@ -78,9 +83,7 @@ class ListFragment : Fragment(R.layout.fragment_list),
                         findNavController().navigate(action)
                     }
 
-                    else -> {}
                 }
-
 
             }
         }
@@ -95,6 +98,11 @@ class ListFragment : Fragment(R.layout.fragment_list),
 
         viewModel.characters.observe(viewLifecycleOwner) {
             mAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+        lifecycleScope.launch {
+            mAdapter.loadStateFlow.collectLatest { loadStates ->
+                showProgress(loadStates.refresh is LoadState.Loading)
+            }
         }
         //Search part
         binding.charSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
@@ -115,7 +123,6 @@ class ListFragment : Fragment(R.layout.fragment_list),
                     binding.recyclerView.scrollToPosition(0)
                     viewModel.searchCharacter(newText)
                     filterButtonClicked = false
-
                 }
                 return true
             }

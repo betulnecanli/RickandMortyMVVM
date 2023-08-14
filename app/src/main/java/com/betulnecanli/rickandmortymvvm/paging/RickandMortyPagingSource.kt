@@ -10,9 +10,9 @@ private const val STARTING_PAGE_INDEX = 1
 
 class RickandMortyPagingSource(
     private val apiService: ApiService,
-    private val query : String,
-    private val status : String
-    ) : PagingSource<Int, Details>() {
+    private val query: String,
+    private val status: String
+) : PagingSource<Int, Details>() {
     override fun getRefreshKey(state: PagingState<Int, Details>): Int? {
         return null
     }
@@ -28,11 +28,8 @@ class RickandMortyPagingSource(
             LoadResult.Page(
                 data = responseData,
                 prevKey = if (currentPage == 1) null else -1,
-                nextKey = if(data.isEmpty()) null else currentPage.plus(1)
+                nextKey = if (data.isEmpty()) null else currentPage.plus(1)
             )
-
-
-
         } catch (e: Exception) {
             LoadResult.Error(e)
         }

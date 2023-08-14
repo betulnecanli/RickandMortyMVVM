@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="inner_frame_layout_padding">5dp</dimen>
+    <dimen name="dividermargin">0dp</dimen>
+    <dimen name="dividermarginout">10dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_marginStart">12dp</dimen>
+    <dimen name="card_marginTop">24dp</dimen>
+    <dimen name="card_marginEnd">12dp</dimen>
+    <dimen name="cardCornerRadius">8dp</dimen>
+</resources>

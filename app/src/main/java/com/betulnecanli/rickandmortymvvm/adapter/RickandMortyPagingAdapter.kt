@@ -1,16 +1,13 @@
 package com.betulnecanli.rickandmortymvvm.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import coil.load
 import com.betulnecanli.rickandmortymvvm.data.models.Details
-import com.betulnecanli.rickandmortymvvm.data.models.ListResponse
 import com.betulnecanli.rickandmortymvvm.databinding.ListItemBinding
 
 class RickandMortyPagingAdapter(

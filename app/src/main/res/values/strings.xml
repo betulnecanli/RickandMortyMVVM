@@ -2,4 +2,7 @@
     <string name="app_name">RickandMortyMVVM</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="characters">Characters</string>
+    <string name="episodes">episodes</string>
+    <string name="locations">Locations</string>
 </resources>
