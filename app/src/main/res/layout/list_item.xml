@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:layout_margin="2dp"
-    >
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/characterImg"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_margin="2dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/characterName"
-        android:text="CHARACTER NAME"
-        android:textSize="12dp"
-        android:lines="1"
-        android:fontFamily="@font/asapcondensed"
-        android:gravity="center"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/characterImg"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="2dp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/characterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/asapcondensed"
+            android:gravity="center"
+            android:lines="1"
+            android:text="CHARACTER NAME"
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
 
-
-
-</LinearLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -8,17 +8,17 @@ import com.betulnecanli.rickandmortymvvm.paging.RickandMortyPagingSource
 import javax.inject.Inject
 
 class RickandMortyRepository @Inject constructor(
-    val apiService: ApiService
+    private val apiService: ApiService
 ) {
 
-    fun getSearchResults(query : String, status : String) =
+    fun getSearchResults(query: String, status: String) =
         Pager(
             config = PagingConfig(
                 pageSize = 20,
                 maxSize = 100,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = {RickandMortyPagingSource(apiService, query, status)}
+            pagingSourceFactory = { RickandMortyPagingSource(apiService, query, status) }
         ).liveData
 
 

@@ -7,47 +7,50 @@
     android:background="@color/black"
     android:fitsSystemWindows="true"
     tools:context=".ui.list.ListFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@color/black">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:background="@drawable/ricknmorty"
-             />
+            android:background="@drawable/ricknmorty" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/black"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            />
+            android:background="@color/black" />
     </RelativeLayout>
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:fitsSystemWindows="false"
         android:background="@android:color/transparent"
-        app:elevation="0dp"
-        >
+        android:fitsSystemWindows="false"
+        app:elevation="0dp">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="false"
             app:collapsedTitleTextAppearance="@style/AppTheme.Title.Collapsed"
             app:expandedTitleTextAppearance="@style/AppTheme.Title.Expanded"
-            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed"
-            >
+            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
                 android:focusableInTouchMode="true"
+                android:gravity="bottom"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/search_title"
                     android:layout_width="wrap_content"
@@ -58,84 +61,88 @@
                     android:textColor="@color/white"
                     android:textSize="32sp"
                     android:textStyle="bold" />
+
                 <SearchView
                     android:id="@+id/charSearchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:searchIcon="@drawable/ic_baseline_search_24"
                     android:background="@drawable/searchv_bg"
-                   android:iconifiedByDefault="false"
-                    app:queryHint="Search"
+                    android:iconifiedByDefault="false"
+                    android:searchIcon="@drawable/ic_baseline_search_24"
                     android:theme="@style/SearchViewStyle"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:queryHint="Search" />
             </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:overScrollMode="never"
-                android:background="@color/black"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layoutManager="GridLayoutManager"
-                tools:itemCount="20"
-                tools:spanCount="2"
-                />
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:background="@color/black"
+        android:overScrollMode="never"
+        app:layoutManager="GridLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:itemCount="20"
+        tools:spanCount="2" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="end|bottom"
-        >
+        android:orientation="vertical">
+
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/statusChipsG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/statusChipsG"
-            app:singleSelection="true"
-            android:layout_marginHorizontal="15dp"
             android:layout_gravity="end|bottom"
-            >
+            android:layout_marginHorizontal="15dp"
+            app:singleSelection="true">
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipAlive"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:text="Alive" />
+                android:text="Alive"
+                android:visibility="gone" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDead"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:text="Dead"/>
+                android:text="Dead"
+                android:visibility="gone" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipUnknown"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:text="Unknown"
-                />
+                android:visibility="gone" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipClear"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:checked="true"
                 android:text="Reset"
-                android:visibility="gone"
-                android:checked="true" />
+                android:visibility="gone" />
         </com.google.android.material.chip.ChipGroup>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_gravity="end|bottom"
-            android:src="@drawable/ic_baseline_filter_list_24"
-            />
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_baseline_filter_list_24" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

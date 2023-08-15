@@ -24,48 +24,39 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val repository: RickandMortyRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val taskEventChannel = Channel<TaskEvent>()
     val taskEvent = taskEventChannel.receiveAsFlow()
 
-    private val currentQuery =MutableLiveData("")
-    private val statusSelected= MutableLiveData("")
+    private val currentQuery = MutableLiveData("")
+    private val statusSelected = MutableLiveData("")
 
 
-    private val charactersFlow = combine(currentQuery.asFlow(), statusSelected.asFlow()){
-        query_, status_ ->
-        Pair(query_, status_)
-    }.flatMapLatest {(query_, status_) ->
-        repository.getSearchResults(query_,status_).asFlow()
-    }
+    private val charactersFlow =
+        combine(currentQuery.asFlow(), statusSelected.asFlow()) { query_, status_ ->
+            Pair(query_, status_)
+        }.flatMapLatest { (query_, status_) ->
+            repository.getSearchResults(query_, status_).asFlow()
+        }
 
     val characters = charactersFlow.asLiveData()
 
 
-
-    fun searchCharacter(query: String){
+    fun searchCharacter(query: String) {
         currentQuery.value = query
     }
 
-    fun statusChoose(status : String){
-        statusSelected.value= status
+    fun statusChoose(status: String) {
+        statusSelected.value = status
     }
-
 
 
     fun openCharacterDetails(details: Details) = viewModelScope.launch {
         taskEventChannel.send(TaskEvent.NavigateToDetailScreen(details))
-
     }
 
-
-
-
-
-
-
-    sealed class TaskEvent{
+    sealed class TaskEvent {
 
         data class NavigateToDetailScreen(val details: Details) : TaskEvent()
 

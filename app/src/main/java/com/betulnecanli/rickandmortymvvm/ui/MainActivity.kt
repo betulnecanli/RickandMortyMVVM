@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.betulnecanli.rickandmortymvvm.R
 import com.betulnecanli.rickandmortymvvm.databinding.ActivityMainBinding
+import com.betulnecanli.rickandmortymvvm.utils.gone
+import com.betulnecanli.rickandmortymvvm.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding  = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment =
@@ -33,7 +35,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() ||super.onSupportNavigateUp()
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    fun showProgress() {
+        binding.progressBar.visible()
+    }
+
+    fun hideProgress() {
+        binding.progressBar.gone()
     }
 }
 
