@@ -200,6 +200,11 @@ class ListFragment : Fragment(R.layout.fragment_list),
         viewModel.openCharacterDetails(details)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        showProgress(false)
+    }
+
 
 }
 
