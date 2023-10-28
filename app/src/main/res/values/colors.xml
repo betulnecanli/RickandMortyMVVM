@@ -8,4 +8,5 @@
     <color name="black">#373535</color>
     <color name="white">#FFFFFFFF</color>
     <color name="progress_color">#3949AB</color>
+    <color name="detail_bg">#45B1B3BF</color>
 </resources>
