@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/detail_bg"
     tools:context=".ui.detail.DetailFragment">
 
     <com.google.android.material.textview.MaterialTextView
@@ -58,8 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Species: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/charImg"
         app:layout_constraintTop_toBottomOf="@+id/charStatusText" />
 
     <TextView
@@ -68,8 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Gender: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/charImg"
         app:layout_constraintTop_toBottomOf="@+id/speciesTextView" />
 
     <TextView
@@ -78,8 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Gender: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/charImg"
         app:layout_constraintTop_toBottomOf="@+id/genderTextView" />
 
 
